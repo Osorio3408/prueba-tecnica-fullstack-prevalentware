@@ -18,6 +18,7 @@ model User {
   name          String
   email         String
   emailVerified Boolean
+  role Role @default(ADMIN)
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
