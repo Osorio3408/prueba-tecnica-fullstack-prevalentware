@@ -15,4 +15,37 @@ export class MovementService {
   async getAllMovements() {
     return this.repository.findAll();
   }
+
+  async calculateBalance() {
+  const movements = await this.repository.findAll();
+
+  return movements.reduce((acc, movement) => {
+    const amount = Number(movement.amount);
+
+    if (movement.type === "INCOME") {
+      return acc + amount;
+    }
+
+    return acc - amount;
+  }, 0);
 }
+
+async getSummary() {
+  const movements = await this.repository.findAll();
+
+  const income = movements
+    .filter(m => m.type === "INCOME")
+    .reduce((acc, m) => acc + Number(m.amount), 0);
+
+  const expense = movements
+    .filter(m => m.type === "EXPENSE")
+    .reduce((acc, m) => acc + Number(m.amount), 0);
+
+  return {
+    income,
+    expense,
+    balance: income - expense
+  };
+}
+}
+
