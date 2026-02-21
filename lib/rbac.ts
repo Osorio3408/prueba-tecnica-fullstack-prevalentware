@@ -1,6 +1,8 @@
 import { auth } from "@/lib/auth";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Role } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+
 
 export async function getSession(req: NextApiRequest) {
   return await auth.api.getSession({
@@ -22,6 +24,9 @@ export async function requireAuth(
   return session;
 }
 
+const prisma = new PrismaClient();
+
+
 export async function requireRole(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -30,7 +35,11 @@ export async function requireRole(
   const session = await requireAuth(req, res);
   if (!session) return null;
 
-  if ((session.user as any).role !== role) {
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+  });
+
+  if (!user || user.role !== role) {
     res.status(403).json({ message: "Forbidden" });
     return null;
   }
