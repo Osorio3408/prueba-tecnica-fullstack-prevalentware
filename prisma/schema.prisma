@@ -20,6 +20,7 @@ enum MovementType {
 model User {
   id            String    @id
   name          String
+  phone         String?
   email         String
   emailVerified Boolean
   role          Role      @default(ADMIN)
