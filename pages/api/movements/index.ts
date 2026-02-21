@@ -5,6 +5,44 @@ import { Role } from "@prisma/client";
 
 const service = new MovementService();
 
+/**
+ * @swagger
+ * tags:
+ *   name: Movements
+ *   description: Financial movements management
+ */
+
+/**
+ * @swagger
+ * /api/movements:
+ *   get:
+ *     summary: Get all financial movements
+ *     tags: [Movements]
+ *     responses:
+ *       200:
+ *         description: List of movements
+ *       401:
+ *         description: Unauthorized
+ *   post:
+ *     summary: Create a new movement
+ *     tags: [Movements]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           example:
+ *             concept: Salary
+ *             amount: 1000
+ *             date: 2026-02-21T00:00:00.000Z
+ *             type: INCOME
+ *     responses:
+ *       201:
+ *         description: Movement created
+ *       400:
+ *         description: Invalid input
+ *       401:
+ *         description: Unauthorized
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -17,6 +55,7 @@ export default async function handler(
     const movements = await service.getAllMovements();
     return res.status(200).json(movements);
   }
+
 
 if (req.method === "POST") {
   const session = await requireRole(req, res, Role.ADMIN);

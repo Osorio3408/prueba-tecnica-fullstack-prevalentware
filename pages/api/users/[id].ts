@@ -5,6 +5,33 @@ import { UserService } from "@/modules/users/user.service";
 
 const service = new UserService();
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   put:
+ *     summary: Update user role or phone
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           example:
+ *             role: USER
+ *             phone: "123456789"
+ *     responses:
+ *       200:
+ *         description: User updated
+ *       400:
+ *         description: Invalid input
+ *       401:
+ *         description: Unauthorized
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
