@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.4",
     "better-auth": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -20,7 +23,7 @@
     "react-dom": "^18.3.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-react": "^5.31.2",
-    "tailwind-merge": "^2.5.5",
+    "tailwind-merge": "^2.6.1",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
