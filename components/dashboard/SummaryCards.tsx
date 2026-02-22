@@ -10,7 +10,7 @@ export default function SummaryCards({ summary }: any) {
   return (
     <div className="grid md:grid-cols-3 gap-6">
       
-      <Card className="shadow-md border-green-200 bg-green-50">
+      <Card className="shadow-md border-green-200 ">
         <CardContent className="p-6">
           <p className="text-sm text-green-700 font-medium">Ingresos</p>
           <h3 className="text-2xl font-bold text-green-800 mt-2">
@@ -19,7 +19,7 @@ export default function SummaryCards({ summary }: any) {
         </CardContent>
       </Card>
 
-      <Card className="shadow-md border-red-200 bg-red-50">
+      <Card className="shadow-md border-red-200">
         <CardContent className="p-6">
           <p className="text-sm text-red-700 font-medium">Gastos</p>
           <h3 className="text-2xl font-bold text-red-800 mt-2">
@@ -28,7 +28,7 @@ export default function SummaryCards({ summary }: any) {
         </CardContent>
       </Card>
 
-      <Card className="shadow-md border-slate-200 bg-white">
+      <Card className="shadow-md border-slate-200">
         <CardContent className="p-6">
           <p className="text-sm text-slate-600 font-medium">Saldo Actual</p>
           <h3

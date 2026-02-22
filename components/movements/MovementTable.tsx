@@ -18,14 +18,14 @@ export default function MovementTable({ movements }: { movements: any[] }) {
 
   return (
     <div className='flex flex-col gap-4'>
-      <div className='rounded-lg border overflow-hidden bg-white shadow-sm'>
+      <div className='rounded-lg border overflow-hidden  shadow-sm'>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className='bg-gray-100'>Concepto</TableHead>
-              <TableHead className='bg-gray-100'>Monto</TableHead>
-              <TableHead className='bg-gray-100'>Fecha</TableHead>
-              <TableHead className='bg-gray-100'>Usuario</TableHead>
+              <TableHead >Concepto</TableHead>
+              <TableHead >Monto</TableHead>
+              <TableHead >Fecha</TableHead>
+              <TableHead >Usuario</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -74,8 +74,8 @@ export default function MovementTable({ movements }: { movements: any[] }) {
       {/* TOTAL SECTION */}
       {movements.length > 0 && (
         <div className='flex justify-end'>
-          <div className='bg-white shadow-md rounded-lg px-6 py-3 border'>
-            <span className='text-sm text-slate-500 mr-2'>Total Balance:</span>
+          <div className='shadow-md rounded-lg px-6 py-3 border'>
+            <span className='text-sm text-slate-400 mr-2'>Total Balance:</span>
             <span
               className={`text-lg font-bold ${
                 total >= 0 ? 'text-green-600' : 'text-red-600'

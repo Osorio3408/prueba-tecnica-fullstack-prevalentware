@@ -36,8 +36,8 @@ export default function MovementsPage() {
 
   return (
     <MainLayout>
-      <div className='bg-white p-8 rounded-xl shadow-md'>
-        <div className='flex justify-between items-center mb-8'>
+      <div className='bg-slate-900 p-8 rounded-xl shadow-md'>
+        <div className='flex justify-between items-center mb-8 gap-20'>
           <h2 className='text-3xl font-bold tracking-tight'>
             Movimientos financieros
           </h2>

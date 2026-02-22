@@ -3,9 +3,26 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { authClient } from '@/lib/auth/client';
-import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import { Role } from '@prisma/client';
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarFooter,
+  SidebarHeader,
+} from '@/components/ui/sidebar';
+
+import {CircleUser} from "lucide-react"
+
+import { SidebarProvider } from '@/components/ui/sidebar';
+
+import { LayoutDashboard, Users, BarChart3, LogOut } from 'lucide-react';
 
 export default function MainLayout({
   children,
@@ -13,76 +30,107 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const [session, setSession] = useState<any>(null);
 
-  const isActive = (path: string) => router.pathname === path;
-
-  const linkClass = (path: string) =>
-    `relative pb-1 transition ${
-      isActive(path)
-        ? 'text-blue-600 font-semibold after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-blue-600'
-        : 'hover:text-blue-600'
-    }`;
+  useEffect(() => {
+    authClient.getSession().then(setSession);
+  }, []);
 
   const handleLogout = async () => {
     await authClient.signOut();
     router.push('/');
   };
 
-  const [session, setSession] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    authClient.getSession().then((res) => {
-      setSession(res);
-      setLoading(false);
-    });
-  }, []);
-
-  if (loading) {
-    return (
-      <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200'>
-        <div className='animate-spin rounded-full h-10 w-10 border-4 border-slate-300 border-t-slate-900'></div>
-      </div>
-    );
-  }
+  const isActive = (path: string) => router.pathname === path;
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-slate-100 to-slate-200'>
-      <header className='bg-white/80 backdrop-blur-md border-b shadow-sm px-8 py-4 flex justify-between items-center'>
-        <h1 className='font-bold text-xl tracking-tight'>
-          Sistema de gestión de Ingresos y Gastos
-        </h1>
-        <nav className='flex gap-6 items-center text-sm font-medium'>
-          {session?.data?.user && (
-            <Link href='/movements' className={linkClass('/movements')}>
-              Movimientos
-            </Link>
-          )}
+    <SidebarProvider>
+    <div className="flex min-h-screen bg-background text-foreground">
+        <Sidebar className="border-r bg-background">
+          <SidebarHeader className="px-6 py-4 border-b bg-muted/30">
+            <h1 className='text-lg font-bold'>Gestión Financiera</h1>
+            <div className='flex items-center gap-3 mt-4'>
+{
+  session?.data?.user?.image ? (
+    <img
+      src={session.data.user.image}
+      alt={session.data.user.name}
+      className='w-8 h-8 rounded-full object-cover'
+    />
+  ) : (
+    <CircleUser />
+)
+}
+            <p className='text-xs text-muted-foreground'>
+              {session?.data?.user?.name}
+            </p>
+            </div>
+          </SidebarHeader>
 
-          {session?.data?.user?.role === 'ADMIN' && (
-            <>
-              <Link href='/users' className={linkClass('/users')}>
-                Usuarios
-              </Link>
-              <Link href='/reports' className={linkClass('/reports')}>
-                Reportes
-              </Link>
-            </>
-          )}
-          {session?.data?.user && (
-            <Button
-              className='text-red-700'
-              variant='outline'
-              size='sm'
-              onClick={handleLogout}
-            >
-              Cerrar sesión
-            </Button>
-          )}
-        </nav>
-      </header>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Navegación</SidebarGroupLabel>
 
-      <main className='max-w-6xl mx-auto py-10 px-6'>{children}</main>
-    </div>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {session?.data?.user && (
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive('/movements')}
+                      >
+                        <Link href='/movements'>
+                          <LayoutDashboard size={18} />
+                          <span>Movimientos</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )}
+
+                  {session?.data?.user?.role === 'ADMIN' && (
+                    <>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={isActive('/users')}
+                        >
+                          <Link href='/users'>
+                            <Users size={18} />
+                            <span>Usuarios</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+
+                      <SidebarMenuItem>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={isActive('/reports')}
+                        >
+                          <Link href='/reports'>
+                            <BarChart3 size={18} />
+                            <span>Reportes</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </>
+                  )}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+
+          {session?.data?.user && (
+            <SidebarFooter className='p-4 border-t'>
+              <SidebarMenuButton className='text-red-500' onClick={handleLogout}>
+                <LogOut size={18} />
+                <span>Cerrar sesión</span>
+              </SidebarMenuButton>
+            </SidebarFooter>
+          )}
+        </Sidebar>
+
+        <main className='flex-1 p-10 bg-background '>{children}</main>
+      </div>
+    </SidebarProvider>
   );
 }

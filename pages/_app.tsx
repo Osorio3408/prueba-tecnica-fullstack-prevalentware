@@ -1,8 +1,14 @@
-import '@/styles/globals.css';
-import type { AppProps } from 'next/app';
+import "@/styles/globals.css";
+import type { AppProps } from "next/app";
+import { useEffect } from "react";
 
-const App = ({ Component, pageProps }: AppProps) => (
-  <Component {...pageProps} />
-);
+const App = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {
+    document.documentElement.classList.add("dark"); 
+    // o "light" si quieres claro
+  }, []);
+
+  return <Component {...pageProps} />;
+};
 
 export default App;

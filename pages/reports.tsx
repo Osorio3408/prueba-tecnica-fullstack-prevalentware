@@ -30,7 +30,7 @@ export default function ReportsPage() {
   }, []);
 
   const fetchSummary = async () => {
-    const res = await fetch("/api/reports/");
+    const res = await fetch("/api/reports");
     const data = await res.json();
     setSummary(data);
     setLoading(false);
@@ -50,7 +50,7 @@ export default function ReportsPage() {
 
   return (
     <MainLayout>
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 w-[800px]">
         <h2 className="text-3xl font-bold">Reportes Financieros</h2>
 
         <SummaryCards summary={summary} />
