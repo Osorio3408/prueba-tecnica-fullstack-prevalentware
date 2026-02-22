@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { MovementService } from "@/modules/movements/movement.service";
-import { requireRole } from "@/lib/rbac";
+import { requireAuth, requireRole } from "@/lib/rbac";
 import { Role } from "@prisma/client";
 
 const service = new MovementService();
@@ -48,7 +48,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
-    const session = await requireRole(req, res, Role.ADMIN);
+    const session = await requireAuth(req, res);
     console.log(session)
     if (!session) return;
 
