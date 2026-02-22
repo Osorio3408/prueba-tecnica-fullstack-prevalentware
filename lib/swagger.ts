@@ -24,8 +24,8 @@ export const swaggerOptions: Options = {
       },
     },
   },
-  apis: [
-    './pages/api/**/*.ts',
-    './modules/**/*.ts',
-  ],
+apis: [
+  './pages/api/**/*.{ts,js}',
+  './modules/**/*.{ts,js}',
+],
 };
