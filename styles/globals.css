@@ -138,67 +138,74 @@
 
 .swagger-ui a.nostyle {
   color: #ffffff !important;
-} 
+}
 
 .swagger-ui .opblock .opblock-summary-description {
   color: #a2a2a2 !important;
 }
 
-.title{
+.title {
   color: #ffffff !important;
 }
 
-.swagger-ui .opblock .opblock-section-header{
+.swagger-ui .opblock .opblock-section-header {
   background: #101f33 !important;
   color: #ffffff !important;
 }
 
-.swagger-ui .opblock .opblock-section-header h4{
+.swagger-ui .opblock .opblock-section-header h4 {
   color: #ffffff !important;
 }
 
-.swagger-ui .btn{
+.swagger-ui .btn {
   background: #334155 !important;
   color: #ffffff !important;
 }
 
-.swagger-ui .opblock-description-wrapper p, .swagger-ui .opblock-external-docs-wrapper p, .swagger-ui .opblock-title_normal p{ 
+.swagger-ui .opblock-description-wrapper p,
+.swagger-ui .opblock-external-docs-wrapper p,
+.swagger-ui .opblock-title_normal p {
   background: #334155 !important;
   color: #ffffff !important;
 }
 
-.swagger-ui table thead tr td, .swagger-ui table thead tr th{
+.swagger-ui table thead tr td,
+.swagger-ui table thead tr th {
   /* background: #334155 !important; */
   color: #ffffff !important;
 }
 
-.swagger-ui .parameter__name{
+.swagger-ui .parameter__name {
   color: #ffffff !important;
 }
 
-.swagger-ui .parameter__type{
+.swagger-ui .parameter__type {
   color: #a2a2a2 !important;
 }
 
-.swagger-ui .response-col_status{
+.swagger-ui .response-col_status {
   color: #b8b8b8 !important;
 }
 
-.swagger-ui  .swagger-ui .info h4, .swagger-ui .info h5, .swagger-ui .info li, .swagger-ui .info p, .swagger-ui .info table{
+.swagger-ui .swagger-ui .info h4,
+.swagger-ui .info h5,
+.swagger-ui .info li,
+.swagger-ui .info p,
+.swagger-ui .info table {
   color: #49c2c8 !important;
 }
 
-.swagger-ui textarea{
+.swagger-ui textarea {
   background: #162130 !important;
   color: #ffffff !important;
   font-size: 18px !important;
 }
 
-.swagger-ui .btn.execute{
+.swagger-ui .btn.execute {
   background: #497ac8 !important;
   color: #ffffff !important;
 }
 
-.swagger-ui .opblock-tag small{
+.swagger-ui .opblock-tag small {
   color: #b5b5b5 !important;
 }

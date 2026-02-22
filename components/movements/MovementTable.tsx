@@ -10,11 +10,13 @@ import {
 } from '@/components/ui/table';
 
 export default function MovementTable({ movements }: { movements: any[] }) {
-  const total = movements.reduce((acc, movement) => {
-    return movement.type === 'INCOME'
-      ? acc + Number(movement.amount)
-      : acc - Number(movement.amount);
-  }, 0);
+  const total = movements.reduce(
+    (acc, movement) =>
+      movement.type === 'INCOME'
+        ? acc + Number(movement.amount)
+        : acc - Number(movement.amount),
+    0
+  );
 
   return (
     <div className='flex flex-col gap-4'>
@@ -22,10 +24,10 @@ export default function MovementTable({ movements }: { movements: any[] }) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead >Concepto</TableHead>
-              <TableHead >Monto</TableHead>
-              <TableHead >Fecha</TableHead>
-              <TableHead >Usuario</TableHead>
+              <TableHead>Concepto</TableHead>
+              <TableHead>Monto</TableHead>
+              <TableHead>Fecha</TableHead>
+              <TableHead>Usuario</TableHead>
             </TableRow>
           </TableHeader>
 

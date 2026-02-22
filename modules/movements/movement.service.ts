@@ -49,22 +49,22 @@ export class MovementService {
   }
 
   async generateCSV() {
-  const movements = await this.repository.findAll();
+    const movements = await this.repository.findAll();
 
-  const headers = ["Concept", "Amount", "Date", "Type"];
+    const headers = ['Concept', 'Amount', 'Date', 'Type'];
 
-  const rows = movements.map(m => [
-    m.concept,
-    Number(m.amount),
-    new Date(m.date).toISOString(),
-    m.type
-  ]);
+    const rows = movements.map((m) => [
+      m.concept,
+      Number(m.amount),
+      new Date(m.date).toISOString(),
+      m.type,
+    ]);
 
-  const csvContent = [
-    headers.join(","),
-    ...rows.map(row => row.join(","))
-  ].join("\n");
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((row) => row.join(',')),
+    ].join('\n');
 
-  return csvContent;
-}
+    return csvContent;
+  }
 }

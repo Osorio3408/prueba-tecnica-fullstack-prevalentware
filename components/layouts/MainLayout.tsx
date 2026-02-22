@@ -18,7 +18,7 @@ import {
   SidebarHeader,
 } from '@/components/ui/sidebar';
 
-import {CircleUser} from "lucide-react"
+import { CircleUser } from 'lucide-react';
 
 import { SidebarProvider } from '@/components/ui/sidebar';
 
@@ -45,25 +45,23 @@ export default function MainLayout({
 
   return (
     <SidebarProvider>
-    <div className="flex min-h-screen bg-background text-foreground">
-        <Sidebar className="border-r bg-background">
-          <SidebarHeader className="px-6 py-4 border-b bg-muted/30">
+      <div className='flex min-h-screen bg-background text-foreground'>
+        <Sidebar className='border-r bg-background'>
+          <SidebarHeader className='px-6 py-4 border-b bg-muted/30'>
             <h1 className='text-lg font-bold'>Gestión Financiera</h1>
             <div className='flex items-center gap-3 mt-4'>
-{
-  session?.data?.user?.image ? (
-    <img
-      src={session.data.user.image}
-      alt={session.data.user.name}
-      className='w-8 h-8 rounded-full object-cover'
-    />
-  ) : (
-    <CircleUser />
-)
-}
-            <p className='text-xs text-muted-foreground'>
-              {session?.data?.user?.name}
-            </p>
+              {session?.data?.user?.image ? (
+                <img
+                  src={session.data.user.image}
+                  alt={session.data.user.name}
+                  className='w-8 h-8 rounded-full object-cover'
+                />
+              ) : (
+                <CircleUser />
+              )}
+              <p className='text-xs text-muted-foreground'>
+                {session?.data?.user?.name}
+              </p>
             </div>
           </SidebarHeader>
 
@@ -121,7 +119,10 @@ export default function MainLayout({
 
           {session?.data?.user && (
             <SidebarFooter className='p-4 border-t'>
-              <SidebarMenuButton className='text-red-500' onClick={handleLogout}>
+              <SidebarMenuButton
+                className='text-red-500'
+                onClick={handleLogout}
+              >
                 <LogOut size={18} />
                 <span>Cerrar sesión</span>
               </SidebarMenuButton>

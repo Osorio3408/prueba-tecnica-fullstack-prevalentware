@@ -58,7 +58,6 @@ export default function MovementsPage() {
           setOpen={setOpen}
           onSuccess={fetchMovements}
         />
-
       </div>
     </MainLayout>
   );

@@ -1,23 +1,19 @@
-import { auth } from "@/lib/auth";
-import { NextApiRequest, NextApiResponse } from "next";
-import { Role } from "@prisma/client";
-import { PrismaClient } from "@prisma/client";
-
+import { auth } from '@/lib/auth';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { Role } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 export async function getSession(req: NextApiRequest) {
   return await auth.api.getSession({
-    headers: new Headers(req.headers as any)
+    headers: new Headers(req.headers as any),
   });
 }
 
-export async function requireAuth(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function requireAuth(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession(req);
 
   if (!session) {
-    res.status(401).json({ message: "Unauthorized" });
+    res.status(401).json({ message: 'Unauthorized' });
     return null;
   }
 
@@ -25,7 +21,6 @@ export async function requireAuth(
 }
 
 const prisma = new PrismaClient();
-
 
 export async function requireRole(
   req: NextApiRequest,
@@ -40,7 +35,7 @@ export async function requireRole(
   });
 
   if (!user || user.role !== role) {
-    res.status(403).json({ message: "Forbidden" });
+    res.status(403).json({ message: 'Forbidden' });
     return null;
   }
 

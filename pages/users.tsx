@@ -46,8 +46,7 @@ export default function UsersPage() {
         <h2 className='text-3xl font-bold mb-8'>Gestión de Usuarios</h2>
 
         {loading ? (
-          <p className='text-gray-500'>
-            Cargando usuarios...</p>
+          <p className='text-gray-500'>Cargando usuarios...</p>
         ) : (
           <UserTable users={users} onEdit={(user) => setSelectedUser(user)} />
         )}

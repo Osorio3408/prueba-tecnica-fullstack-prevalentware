@@ -1,12 +1,12 @@
-const { createDefaultPreset } = require("ts-jest");
+const { createDefaultPreset } = require('ts-jest');
 
 const tsJestTransformCfg = createDefaultPreset().transform;
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "node",
+  preset: 'ts-jest',
+  testEnvironment: 'node',
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1"
+    '^@/(.*)$': '<rootDir>/$1',
   },
 };

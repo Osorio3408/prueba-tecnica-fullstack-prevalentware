@@ -1,4 +1,4 @@
-import { MovementType } from "@prisma/client";
+import { MovementType } from '@prisma/client';
 
 export interface CreateMovementDTO {
   concept: string;

@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { UpdateUserDTO } from "./user.types";
+import { PrismaClient } from '@prisma/client';
+import type { UpdateUserDTO } from './user.types';
 
 const prisma = new PrismaClient();
 
@@ -12,15 +12,15 @@ export class UserRepository {
         email: true,
         phone: true,
         role: true,
-        createdAt: true
-      }
+        createdAt: true,
+      },
     });
   }
 
   async updateUser(id: string, data: UpdateUserDTO) {
     return prisma.user.update({
       where: { id },
-      data
+      data,
     });
   }
 }

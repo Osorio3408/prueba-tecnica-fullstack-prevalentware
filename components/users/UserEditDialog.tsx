@@ -1,45 +1,45 @@
-"use client"
+'use client';
 
-import { useState } from "react"
+import { useState } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from '@/components/ui/select';
 
 export default function UserEditDialog({
   user,
   onClose,
   onSuccess,
 }: {
-  user: any
-  onClose: () => void
-  onSuccess: () => void
+  user: any;
+  onClose: () => void;
+  onSuccess: () => void;
 }) {
-  const [name, setName] = useState(user.name)
-  const [phone, setPhone] = useState(user.phone || "")
-  const [role, setRole] = useState(user.role)
+  const [name, setName] = useState(user.name);
+  const [phone, setPhone] = useState(user.phone || '');
+  const [role, setRole] = useState(user.role);
 
   const handleSave = async () => {
     await fetch(`/api/users/${user.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, phone, role }),
-    })
+    });
 
-    onClose()
-    onSuccess()
-  }
+    onClose();
+    onSuccess();
+  };
 
   return (
     <Dialog open onOpenChange={onClose}>
@@ -48,15 +48,15 @@ export default function UserEditDialog({
           <DialogTitle>Editar Usuario</DialogTitle>
         </DialogHeader>
 
-        <div className="flex flex-col gap-4">
+        <div className='flex flex-col gap-4'>
           <Input
-            placeholder="Nombre"
+            placeholder='Nombre'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
 
           <Input
-            placeholder="Teléfono"
+            placeholder='Teléfono'
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -66,16 +66,14 @@ export default function UserEditDialog({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ADMIN">ADMIN</SelectItem>
-              <SelectItem value="USER">USER</SelectItem>
+              <SelectItem value='ADMIN'>ADMIN</SelectItem>
+              <SelectItem value='USER'>USER</SelectItem>
             </SelectContent>
           </Select>
 
-          <Button onClick={handleSave}>
-            Guardar Cambios
-          </Button>
+          <Button onClick={handleSave}>Guardar Cambios</Button>
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
